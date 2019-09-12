@@ -8,7 +8,11 @@ def playing(inp):
 	headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36',
 			 'referer': 'https://pb-calc.herokuapp.com/player/team',
 	}
-	page=requests.get(srch,headers=headers)
+	proxies={
+		'http': 'http://217.182.120.166:8080',
+		'https':'http://217.182.120.166:8080',
+	}
+	page=requests.get(srch,headers=headers,proxies=proxies)
 	print(page)
 	soup=BeautifulSoup(page.content,'lxml')
 	a=soup.find_all('div',class_="cb-col cb-col-27 cb-mat-fct-itm text-bold",string="Playing XI:")
