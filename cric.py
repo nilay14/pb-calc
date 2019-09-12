@@ -12,7 +12,8 @@ def playing(inp):
 		'http': 'http://217.182.120.166:8080',
 		'https':'http://217.182.120.166:8080',
 	}
-	page=requests.get(srch,headers=headers,proxies=proxies)
+	session=requests.Session()
+	page=session.get(srch,headers=headers,proxies=proxies)
 	print(page)
 	soup=BeautifulSoup(page.content,'lxml')
 	a=soup.find_all('div',class_="cb-col cb-col-27 cb-mat-fct-itm text-bold",string="Playing XI:")
