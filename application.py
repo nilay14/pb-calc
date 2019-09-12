@@ -7,9 +7,9 @@ from cric import playing
 from cricbs import calculate
 from flask_session import Session
 
-application=Flask(__name__)
+app=Flask(__name__)
 
-application.secret_key=os.urandom(24)
+app.secret_key=os.urandom(24)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:P0A3kl8yfTqhGzZVjkFm@database-1.c4w8u3yld3az.ap-south-1.rds.amazonaws.com/master'
 db = SQLAlchemy(application)
