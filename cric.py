@@ -5,8 +5,9 @@ def playing(inp):
 	st=inp.split('/')
 	srch='https://www.cricbuzz.com/cricket-match-facts/' + st[-2] + '/' + st[-1]
 	print(srch)
-	headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'
-}
+	headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36',
+			 'referer': 'https://pb-calc.herokuapp.com/player/team',
+	}
 	page=requests.get(srch,headers=headers)
 	print(page)
 	soup=BeautifulSoup(page.content,'lxml')
