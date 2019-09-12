@@ -8,6 +8,7 @@ def playing(inp):
 	page=requests.get(srch)
 	soup=BeautifulSoup(page.content,'lxml')
 	a=soup.find_all('div',class_="cb-col cb-col-27 cb-mat-fct-itm text-bold",string="Playing XI:")
+	print(a)
 	# team=[]
 	# for i in range(0,len(a)):
 	# 	team.append(a[i].get_text())
