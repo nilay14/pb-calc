@@ -1,0 +1,9 @@
+{%extends 'layout.html'%}
+{%block content%}
+    {% if calc>0 %}
+        <h2>Player 1 is plus by {{calc}} runs</h2>
+    {% endif%}
+    {% if calc<0 %}
+        <h2>Player 1 is minus by {{calc}} runs</h2>
+    {% endif%}
+{%endblock%}

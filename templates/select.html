@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for msg in get_flashed_messages() %}
+        <p>{{ msg }}</p>
+    {%endfor%}
+        
+                <form action = "" method="POST">
+                    {{form.hidden_tag()}}  
+                    
+                        <div class="row visible-xs">
+                            <div class="col-md-6">
+                                {{form.date.label}}
+                            </div>
+                            <div class="col-md-6 ">
+                                    {{form.date(class_="custom-select")}}
+                            </div>
+                        </div>
+                    
+                    
+        
+                        <div class="row visible-xs">
+                            <div class="col-md-6">
+                                {{form.match_series.label}}  
+                            </div>
+                            <div class="col-md-6">
+                                {{form.match_series(class_="custom-select")}}
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="row visible-xs">
+                            <div class="col-md-6">
+                                {{form.match_name.label}} 
+                            </div>
+                            <div class="col-md-6">
+                                {{form.match_name(class_="custom-select")}}
+                            </div>
+                        
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <br>
+                            {{form.submit(class_="btn btn-primary")}}
+                        </div>
+                    </div>
+                </form>
+    <script>
+        var date_select=document.getElementById("date");
+        var series_select=document.getElementById("match_series");
+        var match_select=document.getElementById("match_name");
+        date_select.onchange = function()  {
+             
+             date = date_select.value;
+             fetch('/date/' + date).then(function(response) {
+                 response.json().then(function(data) {
+                     var optionHTML1 = '';
+                     for (var ser of data.series) {
+                         
+                         optionHTML1 += '<option value="' + ser.id + '">' + ser.series_name + '</option>';
+                     }
+                     series_select.innerHTML = optionHTML1;
+                 })
+                 
+             });
+         };
+         /* date_select.onchange = function(){
+         var x=document.getElementById("match_series").length;
+         alert(x);
+         } */
+        
+         series_select.onchange = function()  {
+             
+             match = series_select.value;
+             fetch('/name/' + match).then(function(response) {
+                 response.json().then(function(data) {
+                     var optionHTML2 = '';
+                     for (var mat of data.matches) {
+                         
+                         optionHTML2 += '<option value="' + mat.id + '">' + mat.match_name + '</option>';
+                     }
+                     match_select.innerHTML = optionHTML2;
+                 })
+                 
+             });
+         }
+        
+
+    
+    
+    </script>
+
+{%endblock%}
