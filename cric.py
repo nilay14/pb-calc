@@ -6,6 +6,7 @@ def playing(inp):
 	srch='https://www.cricbuzz.com/cricket-match-facts/' + st[-2] + '/' + st[-1]
 	print(srch)
 	page=requests.get(srch)
+	print(page)
 	soup=BeautifulSoup(page.content,'lxml')
 	a=soup.find_all('div',class_="cb-col cb-col-27 cb-mat-fct-itm text-bold",string="Playing XI:")
 	print(a)
